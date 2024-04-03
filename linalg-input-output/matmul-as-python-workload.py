@@ -1,0 +1,1 @@
+workload = {0: {'operator_type': 'default', 'equation': 'O[d0][d1] += I[d0][d2] * W[d2][d1]', 'dimension_relations': [], 'loop_dim_size': {'d0': 16, 'd1': 16, 'd2': 16}, 'operand_precision': {'O': 32, 'O_final': 32, 'W': 32, 'I': 32}, 'operand_source': {'W': [], 'I': []}, 'constant_operands': ['I', 'W'], 'padding': {'D0': (0, 0), 'D2': (0, 0)}}}
