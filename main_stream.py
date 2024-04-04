@@ -18,9 +18,16 @@ _logging_format = (
 _logging.basicConfig(level=_logging_level, format=_logging_format)
 
 ################################INPUTS################################
-accelerator = "stream.inputs.examples.hardware.TPU_like_quad_core"
-workload_path = "stream/inputs/examples/workload/resnet18.onnx"
-mapping_path = "stream.inputs.examples.mapping.tpu_like_quad_core"
+# accelerator = "stream.inputs.examples.hardware.TPU_like_quad_core"
+# workload_path = "stream/inputs/examples/workload/resnet18.onnx"
+# mapping_path = "stream.inputs.examples.mapping.tpu_like_quad_core"
+# CN_define_mode = 1  # manually define outer-CN loops
+# hint_loops = [("OY", "all")]
+# nb_ga_individuals = 16  # number of individuals in each generation
+# nb_ga_generations = 16  # number of genetic algorithm generations
+accelerator = "linalg-input-output.inputs.examples.hardware.snax_gemm"
+workload_path = "linalg-input-output.inputs.examples.workload.workload"
+mapping_path = "linalg-input-output.inputs.examples.mapping.snax_gemm"
 CN_define_mode = 1  # manually define outer-CN loops
 hint_loops = [("OY", "all")]
 nb_ga_individuals = 16  # number of individuals in each generation
@@ -62,8 +69,8 @@ memory_fig_path = f"outputs/{experiment_id}-memory.png"
 mainstage = MainStage(
     [  # Initializes the MainStage as entry point
         AcceleratorParserStage,  # Parses the accelerator
-        StreamONNXModelParserStage,  # Parses the ONNX Model into the workload
-        # UserDefinedModelParserStage,  # Parses the user-defined Model into the workload
+       # StreamONNXModelParserStage,  # Parses the ONNX Model into the workload
+        UserDefinedModelParserStage,  # Parses the user-defined Model into the workload
         GenerateCNWorkloadHybridStage,
         IntraCoreMappingStage,
         DetermineSchedulingOrderStage,
