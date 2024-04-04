@@ -13,13 +13,22 @@ _logging_format = (
 )
 _logging.basicConfig(level=_logging_level, format=_logging_format)
 
-#################################
-accelerator = "stream.inputs.testing.hardware.single_testing_core_offchip"
-workload_path = "stream.inputs.testing.workload.testing_workload_for_1_core"
-mapping_path = "stream.inputs.testing.mapping.testing_mapping"
+accelerator = "linalg-input-output.inputs.examples.hardware.snax_gemm"
+workload_path = "linalg-input-output.inputs.examples.workload.workload"
+# workload_path = "stream.inputs.testing.workload.testing_workload_for_1_core"
+mapping_path = "linalg-input-output.inputs.examples.mapping.snax_gemm"
+CN_define_mode = 1  # manually define outer-CN loops
+hint_loops = [("OY", "all")]
+nb_ga_individuals = 16  # number of individuals in each generation
+nb_ga_generations = 16  # number of genetic algorithm generations
 
-CN_define_mode = 1  # manually define outer CN size for all cores and all layers
-hint_loops = [("OY", "all")]  # outer CN loops, with error in resnet18 plotting
+#################################
+# accelerator = "stream.inputs.testing.hardware.single_testing_core_offchip"
+workload_path = "stream.inputs.testing.workload.testing_workload_for_1_core"
+# mapping_path = "stream.inputs.testing.mapping.testing_mapping"
+
+# CN_define_mode = 1  # manually define outer CN size for all cores and all layers
+# hint_loops = [("OY", "all")]  # outer CN loops, with error in resnet18 plotting
 
 hw_name = accelerator.split(".")[-1]
 wl_name = re.split(r"/|\.", workload_path)[-1]

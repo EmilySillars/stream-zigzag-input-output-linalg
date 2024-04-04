@@ -26,7 +26,8 @@ _logging.basicConfig(level=_logging_level, format=_logging_format)
 # nb_ga_individuals = 16  # number of individuals in each generation
 # nb_ga_generations = 16  # number of genetic algorithm generations
 accelerator = "linalg-input-output.inputs.examples.hardware.snax_gemm"
-workload_path = "linalg-input-output.inputs.examples.workload.workload"
+#workload_path = "linalg-input-output.inputs.examples.workload.workload"
+workload_path = "stream.inputs.testing.workload.testing_workload_for_1_core"
 mapping_path = "linalg-input-output.inputs.examples.mapping.snax_gemm"
 CN_define_mode = 1  # manually define outer-CN loops
 hint_loops = [("OY", "all")]
